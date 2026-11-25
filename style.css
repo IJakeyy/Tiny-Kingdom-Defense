@@ -1,0 +1,73 @@
+/* Tiny Kingdom Defense website. Colours match the game and the itch.io page. */
+:root {
+	--sea: #47aba9;
+	--sea-deep: #2f7f86;
+	--parchment: #dcdca5;
+	--parchment-dark: #a9a272;
+	--ink: #3b261a;
+	--red: #99262b;
+	--wood: #6b4430;
+}
+* { box-sizing: border-box; }
+html { background: var(--sea); }
+body {
+	margin: 0;
+	background: radial-gradient(ellipse at top, #5bbcb9 0%, var(--sea) 45%, var(--sea-deep) 100%) fixed;
+	color: var(--ink);
+	font: 18px/1.55 "Pixelify Sans", system-ui, sans-serif;
+	min-height: 100vh;
+}
+.scroll {
+	max-width: 960px;
+	margin: 32px auto;
+	padding: 40px 48px 48px;
+	background: var(--parchment);
+	border: 4px solid var(--wood);
+	border-radius: 6px;
+	box-shadow: 8px 8px 0 var(--parchment-dark), 0 0 0 4px var(--parchment) inset;
+}
+@media (max-width: 1000px) { .scroll { margin: 16px; padding: 24px 20px 32px; } }
+h1, h2 {
+	font-family: "Jacquard 24", Georgia, serif;
+	font-weight: 400;
+	color: var(--red);
+	line-height: 1.1;
+	margin: 0 0 12px;
+}
+h1 { font-size: clamp(48px, 9vw, 88px); text-align: center; text-shadow: 3px 3px 0 #f2efcf; }
+h2 { font-size: 44px; margin-top: 36px; }
+h3 { color: var(--red); margin: 24px 0 6px; font-size: 20px; }
+.ribbon {
+	display: block;
+	width: fit-content;
+	margin: 0 auto 24px;
+	padding: 6px 28px;
+	background: var(--red);
+	color: #fff6dc;
+	border-radius: 3px;
+	box-shadow: 4px 4px 0 #6d1a1e;
+	text-align: center;
+}
+a { color: var(--red); font-weight: 700; }
+a:hover { color: #c0333a; }
+.hero { display: block; width: 100%; height: auto; border: 4px solid var(--wood); border-radius: 4px; image-rendering: pixelated; }
+.cta { text-align: center; margin: 28px 0 8px; }
+.button {
+	display: inline-block;
+	padding: 14px 36px;
+	background: var(--sea-deep);
+	color: #fff;
+	text-decoration: none;
+	font-size: 24px;
+	border: 3px solid #1f5a60;
+	border-radius: 6px;
+	box-shadow: 0 5px 0 #1f5a60;
+}
+.button:hover { background: #3a9097; color: #fff; }
+.small { font-size: 15px; opacity: 0.85; }
+ul { padding-left: 22px; }
+li { margin: 6px 0; }
+.shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 16px; }
+.shots img { width: 100%; height: auto; border: 3px solid var(--wood); border-radius: 4px; }
+footer { text-align: center; margin-top: 40px; font-size: 15px; }
+footer a { margin: 0 10px; }
