@@ -1,73 +1,281 @@
-/* Tiny Kingdom Defense website. Colours match the game and the itch.io page. */
+/* Tiny Kingdom Defense website.
+   Every frame, button, ribbon, sprite and island is real Tiny Swords pack art (Pixel Frog),
+   stitched/rendered from the game (TinySwords/tests/web_export.tscn). Colours match the game. */
 :root {
 	--sea: #47aba9;
-	--sea-deep: #2f7f86;
+	--sea-deep: #2b7177;
+	--cream: #f4ecd2;
 	--parchment: #dcdca5;
 	--parchment-dark: #a9a272;
 	--ink: #3b261a;
 	--red: #99262b;
-	--wood: #6b4430;
+	--red-dark: #6d1a1e;
+	--gold: #f0c75e;
+	--slate-text: #ece6d6;
 }
 * { box-sizing: border-box; }
-html { background: var(--sea); }
+html { background: var(--sea); scroll-behavior: smooth; }
 body {
 	margin: 0;
-	background: radial-gradient(ellipse at top, #5bbcb9 0%, var(--sea) 45%, var(--sea-deep) 100%) fixed;
 	color: var(--ink);
-	font: 18px/1.55 "Pixelify Sans", system-ui, sans-serif;
-	min-height: 100vh;
+	font: 19px/1.55 "Pixelify Sans", system-ui, sans-serif;
+	background: var(--sea) url("images/sea.png") center top / cover fixed;
+	overflow-x: hidden;
 }
+img { image-rendering: pixelated; }
+a { color: var(--red); font-weight: 700; }
+a:hover { color: #c0333a; }
+h1, h2, h3 { font-weight: 400; margin: 0; }
+
+/* ---------- pack 9-slice pieces ---------- */
+.paper {
+	border: solid transparent;
+	border-width: 44px 52px 45px 52px;
+	border-image: url("images/ui/paper.png") 44 52 45 52 fill / 44px 52px 45px 52px;
+	padding: 4px 6px;
+}
+.slate {
+	border: solid transparent;
+	border-width: 44px 55px 43px 55px;
+	border-image: url("images/ui/special.png") 44 55 43 55 fill / 44px 55px 43px 55px;
+	color: var(--slate-text);
+	padding: 8px 10px;
+}
+.wood {
+	border: solid transparent;
+	border-width: 85px 84px 103px 84px;
+	border-image: url("images/ui/wood.png") 85 84 103 84 fill / 85px 84px 103px 84px;
+}
+.ribbon-blue, .ribbon-red {
+	display: inline-block;
+	height: 103px;
+	line-height: 86px;
+	padding: 0 18px;
+	border: solid transparent;
+	border-width: 0 97px 0 98px;
+	border-image: url("images/ui/ribbon_blue.png") 0 97 0 98 fill / 0 97px 0 98px;
+	white-space: nowrap;
+}
+.ribbon-red { border-image-source: url("images/ui/ribbon_red.png"); }
+.ribbon-small { transform: scale(0.62); transform-origin: center; margin: -20px -40px; }
+
+/* Pack button, its frame drawn at exactly half size (crisp pixels, sensible height). */
+.btn {
+	display: inline-block;
+	min-width: 200px;
+	padding: 4px 30px 12px;
+	border: solid transparent;
+	border-width: 24px 23px;
+	border-image: url("images/ui/btn_blue.png") 47 45 47 45 fill / 24px 23px;
+	color: #fff;
+	text-decoration: none;
+	text-align: center;
+	font-size: 32px;
+	line-height: 1.2;
+	font-weight: 700;
+	text-shadow: 0 3px 0 #1d3f56, 2px 0 0 #1d3f56, -2px 0 0 #1d3f56, 0 -2px 0 #1d3f56;
+	transition: transform 0.12s, filter 0.12s;
+}
+.btn:hover { color: #fffbe2; filter: brightness(1.12); transform: scale(1.05); }
+.btn:active { border-image-source: url("images/ui/btn_blue_down.png"); border-image-slice: 36 50 49 50 fill; padding: 10px 30px 6px; }
+.btn.small-btn { font-size: 22px; min-width: 0; padding: 0 16px 8px; }
+.btn.red { border-image-source: url("images/ui/btn_red.png"); text-shadow: 0 3px 0 #5b1418, 2px 0 0 #5b1418, -2px 0 0 #5b1418, 0 -2px 0 #5b1418; }
+
+/* Big pixel titles: red with a cream outline, like the game's logo. */
+.title-text {
+	font-family: "Jacquard 24", Georgia, serif;
+	color: var(--red);
+	text-shadow:
+		3px 0 0 var(--cream), -3px 0 0 var(--cream), 0 3px 0 var(--cream), 0 -3px 0 var(--cream),
+		3px 3px 0 var(--cream), -3px 3px 0 var(--cream), 3px -3px 0 var(--cream), -3px -3px 0 var(--cream),
+		0 9px 0 rgba(10, 40, 48, 0.35);
+}
+.light-text { color: #fffbea; text-shadow: 0 2px 0 rgba(20, 30, 40, 0.65), 2px 0 0 rgba(20, 30, 40, 0.4), -2px 0 0 rgba(20, 30, 40, 0.4); }
+
+/* ---------- animated pack sprites ----------
+   <i class="sp" style="--img:url(...); --n:frames; --w:frame px; --h:frame px; --t:loop time"> */
+.sp {
+	display: block;
+	width: var(--w);
+	height: var(--h);
+	background: var(--img) 0 0 / calc(var(--n) * 100%) 100% no-repeat;
+	image-rendering: pixelated;
+	animation: sp var(--t, 1s) steps(var(--n), jump-none) infinite;
+	animation-delay: var(--d, 0s);
+	pointer-events: none;
+}
+@keyframes sp { to { background-position-x: 100%; } }
+.flip { transform: scaleX(-1); }
+
+/* A floating island with things standing on it. Children are placed with --x/--y (feet). */
+.isle { position: relative; display: inline-block; animation: bob 4.4s ease-in-out infinite; animation-delay: var(--bob, 0s); }
+.isle > img.ground { display: block; }
+.isle > .on { position: absolute; left: var(--x); top: var(--y); transform: translate(-50%, -100%); }
+.isle > .on.flip { transform: translate(-50%, -100%) scaleX(-1); }
+@keyframes bob { 50% { transform: translateY(-8px); } }
+
+/* ---------- hero ---------- */
+.hero {
+	position: relative;
+	min-height: clamp(640px, 100vh, 1080px);
+	display: grid;
+	place-items: center;
+	padding: 90px 16px 60px;
+	background: url("images/hero_bg.png") center / cover no-repeat;
+	overflow: hidden;
+}
+.hero::after {  /* soft fade into the page sea */
+	content: "";
+	position: absolute;
+	inset: auto 0 0 0;
+	height: 120px;
+	background: linear-gradient(transparent, rgba(43, 113, 119, 0.35));
+	pointer-events: none;
+}
+.topnav {
+	position: absolute;
+	top: 18px;
+	left: 50%;
+	transform: translateX(-50%);
+	display: flex;
+	gap: 26px;
+	z-index: 3;
+	font-size: 20px;
+}
+.topnav a { white-space: nowrap; color: #fffbea; text-decoration: none; font-weight: 700; text-shadow: 0 2px 0 rgba(20, 30, 40, 0.7); }
+.topnav a:hover { color: var(--gold); }
+.hero-inner { position: relative; z-index: 2; text-align: center; }
+.logo { display: flex; flex-direction: column; align-items: center; animation: bob 3.6s ease-in-out infinite; }
+.logo-top { font-size: clamp(64px, 11vw, 168px); line-height: 0.9; }
+.logo-sub { margin-top: -6px; font-family: "Jacquard 24", Georgia, serif; font-size: 72px; color: var(--red); }
+.tagline { margin: 22px 0 0; font-size: 24px; color: #fff6dc; transform: scale(0.85); }
+.cta-row { margin-top: 6px; }
+.hero-note { margin: 0; font-size: 20px; }
+.clouds { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
+.cloud { position: absolute; left: -620px; opacity: 0.55; animation: drift linear infinite; }
+.cloud.c1 { top: 6%; animation-duration: 95s; }
+.cloud.c2 { top: 44%; animation-duration: 120s; animation-delay: -60s; }
+.cloud.c3 { top: 72%; animation-duration: 105s; animation-delay: -30s; }
+@keyframes drift { to { transform: translateX(calc(100vw + 700px)); } }
+.duck { position: absolute; z-index: 1; top: 13%; left: 62%; animation: paddle 16s ease-in-out infinite; }
+@keyframes paddle { 50% { transform: translateX(120px); } }
+
+/* ---------- page sections ---------- */
+section { position: relative; padding: 70px 16px; }
+.wrap { max-width: 1140px; margin: 0 auto; }
+.section-title { text-align: center; margin-bottom: 36px; }
+.section-title h2 { font-size: clamp(48px, 7vw, 84px); line-height: 1; }
+.section-title p { margin: 10px auto 0; max-width: 700px; font-size: 21px; }
+
+.trailer { text-align: center; }
+.trailer .wood { display: inline-block; max-width: 100%; }
+.trailer img { display: block; width: 100%; max-width: 960px; height: auto; }
+
+.features { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+.feature { text-align: center; }
+.feature .art { height: 150px; display: flex; align-items: flex-end; justify-content: center; margin-bottom: 4px; }
+.feature h3 { font-family: "Jacquard 24", Georgia, serif; font-size: 40px; color: var(--red); line-height: 1; }
+.feature p { margin: 8px 0 0; font-size: 18px; }
+.avatars { display: flex; flex-wrap: wrap; gap: 4px; }
+.avatars img { width: 52px; height: 52px; }
+
+/* Daily Challenge */
+.daily { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: 26px; align-items: start; }
+.today h3 { color: var(--gold); font-size: 22px; letter-spacing: 1px; }
+.today .mode { font-family: "Jacquard 24", Georgia, serif; font-size: 64px; line-height: 1; color: #fff; margin: 6px 0 4px; }
+.today .twist { color: var(--gold); font-weight: 700; }
+.today p { margin: 8px 0; }
+.today .count { font-size: 30px; color: #fff; }
+.modes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.mode-card { text-align: center; }
+.mode-card button { all: unset; cursor: zoom-in; display: block; }
+.mode-card img.shot { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; border: 4px solid #1d2026; border-radius: 4px; box-shadow: 0 4px 0 rgba(0, 0, 0, 0.35); }
+.mode-card h4 { margin: 10px 0 2px; font-family: "Jacquard 24", Georgia, serif; font-weight: 400; font-size: 36px; color: #fff; }
+.mode-card p { margin: 0; font-size: 16px; color: var(--slate-text); }
+.mode-card.is-today img.shot { border-color: var(--gold); }
+.mode-card .today-tag { display: inline-block; margin-top: 6px; padding: 2px 10px; border-radius: 3px; background: var(--gold); color: var(--ink); font-size: 14px; font-weight: 700; visibility: hidden; }
+.mode-card.is-today .today-tag { visibility: visible; }
+
+/* Heroes */
+.heroes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; text-align: center; }
+.hero-card .isle { margin-top: 40px; max-width: 100%; }
+.hero-card .isle > img.ground { max-width: 100%; height: auto; }
+.hero-card .name { margin: -26px auto 0; position: relative; z-index: 2; font-family: "Jacquard 24", Georgia, serif; font-size: 50px; color: #fff6dc; text-shadow: 0 3px 0 var(--red-dark); }
+.hero-card p { margin: -10px 6px 0; font-size: 17px; }
+.hero-card .abil { color: #fffbea; font-weight: 700; font-size: 16px; margin-top: 6px; }
+
+/* Screenshots */
+.gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.gallery button { all: unset; cursor: zoom-in; display: block; }
+.gallery img { display: block; width: 100%; height: auto; border: 4px solid var(--ink); border-radius: 4px; box-shadow: 6px 6px 0 rgba(20, 40, 48, 0.35); transition: transform 0.15s; }
+.gallery button:hover img, .mode-card button:hover img.shot { transform: translateY(-4px) rotate(-0.5deg); }
+.gallery figcaption { margin-top: 6px; text-align: center; font-size: 17px; }
+
+dialog.lightbox { border: 0; padding: 0; background: transparent; max-width: 96vw; }
+dialog.lightbox::backdrop { background: rgba(10, 25, 30, 0.82); }
+dialog.lightbox img { display: block; max-width: 94vw; max-height: 86vh; border: 4px solid var(--ink); border-radius: 4px; }
+dialog.lightbox p { margin: 8px 0 0; text-align: center; color: #fffbea; }
+
+/* Together */
+.together { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+
+/* Final call to action: the duel island */
+.finale { text-align: center; padding-bottom: 40px; }
+.finale .isle { margin: 120px auto 0; }
+
+footer { text-align: center; padding: 30px 16px 40px; font-size: 16px; }
+footer a { margin: 0 12px; color: #fffbea; text-shadow: 0 2px 0 rgba(20, 30, 40, 0.6); }
+footer p { margin: 10px 0 0; }
+
+/* ---------- smaller screens ---------- */
+@media (max-width: 1000px) {
+	.features, .together { grid-template-columns: 1fr 1fr; }
+	.daily { grid-template-columns: 1fr; }
+	.heroes { grid-template-columns: 1fr 1fr; row-gap: 30px; }
+	.gallery { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+	body { font-size: 17px; }
+	.topnav { gap: 12px; font-size: 14px; white-space: nowrap; }
+	.features, .together, .modes, .gallery { grid-template-columns: 1fr; }
+	.logo-top { font-size: clamp(40px, 13vw, 90px); }
+	/* Ribbons at exactly half size on phones. */
+	.ribbon-blue:not(.ribbon-small), .ribbon-red:not(.ribbon-small) {
+		height: 52px;
+		line-height: 44px;
+		padding: 0 6px;
+		border-width: 0 48px 0 49px;
+		border-image-width: 0 48px 0 49px;
+	}
+	.logo-sub { font-size: 38px; }
+	.tagline { font-size: 15px; transform: none; }
+	.tagline .opt { display: none; }
+	.btn { min-width: 0; font-size: 26px; }
+	.hero-note { font-size: 16px; }
+	.wood { border-width: 42px 42px 52px 42px; border-image-width: 42px 42px 52px 42px; }
+	.paper { border-width: 30px 34px 30px 34px; border-image-width: 30px 34px 30px 34px; }
+	.slate { border-width: 30px 36px 30px 36px; border-image-width: 30px 36px 30px 36px; }
+	.heroes .isle, .finale .isle { transform: scale(0.8); }
+}
+@media (prefers-reduced-motion: reduce) {
+	*, *::before, *::after { animation: none !important; transition: none !important; }
+	html { scroll-behavior: auto; }
+}
+
+/* ---------- simple text pages (privacy policy) ---------- */
 .scroll {
 	max-width: 960px;
 	margin: 32px auto;
-	padding: 40px 48px 48px;
-	background: var(--parchment);
-	border: 4px solid var(--wood);
-	border-radius: 6px;
-	box-shadow: 8px 8px 0 var(--parchment-dark), 0 0 0 4px var(--parchment) inset;
+	padding: 20px 26px 26px;
+	border: solid transparent;
+	border-width: 44px 52px 45px 52px;
+	border-image: url("images/ui/paper.png") 44 52 45 52 fill / 44px 52px 45px 52px;
 }
-@media (max-width: 1000px) { .scroll { margin: 16px; padding: 24px 20px 32px; } }
-h1, h2 {
-	font-family: "Jacquard 24", Georgia, serif;
-	font-weight: 400;
-	color: var(--red);
-	line-height: 1.1;
-	margin: 0 0 12px;
-}
-h1 { font-size: clamp(48px, 9vw, 88px); text-align: center; text-shadow: 3px 3px 0 #f2efcf; }
-h2 { font-size: 44px; margin-top: 36px; }
-h3 { color: var(--red); margin: 24px 0 6px; font-size: 20px; }
-.ribbon {
-	display: block;
-	width: fit-content;
-	margin: 0 auto 24px;
-	padding: 6px 28px;
-	background: var(--red);
-	color: #fff6dc;
-	border-radius: 3px;
-	box-shadow: 4px 4px 0 #6d1a1e;
-	text-align: center;
-}
-a { color: var(--red); font-weight: 700; }
-a:hover { color: #c0333a; }
-.hero { display: block; width: 100%; height: auto; border: 4px solid var(--wood); border-radius: 4px; image-rendering: pixelated; }
-.cta { text-align: center; margin: 28px 0 8px; }
-.button {
-	display: inline-block;
-	padding: 14px 36px;
-	background: var(--sea-deep);
-	color: #fff;
-	text-decoration: none;
-	font-size: 24px;
-	border: 3px solid #1f5a60;
-	border-radius: 6px;
-	box-shadow: 0 5px 0 #1f5a60;
-}
-.button:hover { background: #3a9097; color: #fff; }
+.scroll h1 { font-family: "Jacquard 24", Georgia, serif; font-size: clamp(48px, 8vw, 80px); color: var(--red); text-align: center; line-height: 1.05; }
+.scroll h3 { color: var(--red); margin: 24px 0 6px; font-size: 21px; font-weight: 700; }
+.scroll .ribbon { display: block; width: fit-content; margin: 8px auto 18px; padding: 4px 24px; background: var(--red); color: #fff6dc; border-radius: 3px; box-shadow: 4px 4px 0 var(--red-dark); }
+.scroll footer a { color: var(--red); text-shadow: none; }
 .small { font-size: 15px; opacity: 0.85; }
 ul { padding-left: 22px; }
 li { margin: 6px 0; }
-.shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 16px; }
-.shots img { width: 100%; height: auto; border: 3px solid var(--wood); border-radius: 4px; }
-footer { text-align: center; margin-top: 40px; font-size: 15px; }
-footer a { margin: 0 10px; }
+@media (max-width: 640px) { .scroll { margin: 12px; padding: 6px 4px 10px; border-width: 30px 34px; border-image-width: 30px 34px; } }

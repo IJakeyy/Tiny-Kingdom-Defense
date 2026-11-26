@@ -4,7 +4,10 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Tiny Kingdom Defense</title>
-	<meta name="description" content="Gather, build and defend your island castle against waves of invaders, alone or with friends. A pixel-art castle defense game for Windows.">
+	<meta name="description" content="Gather, build and defend your island castle against waves of invaders, alone or with friends. A free pixel-art castle defense game for Windows, with online co-op, versus and a new Daily Challenge every day.">
+	<meta property="og:title" content="Tiny Kingdom Defense">
+	<meta property="og:description" content="Gather, build and defend your island castle, alone or with friends. Free for Windows.">
+	<meta property="og:image" content="https://tinykingdomdefense.crabdance.com/images/shots/02_battle.png">
 	<link rel="icon" href="favicon.ico">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,40 +15,332 @@
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-<main class="scroll">
-	<h1>Tiny Kingdom Defense</h1>
-	<span class="ribbon">Gather - Build - Defend, alone or with friends</span>
 
-	<img class="hero" src="images/gameplay.gif" width="960" height="540" alt="Blue soldiers and red invaders clash next to a castle on a grassy island">
-
-	<div class="cta">
-		<a class="button" href="https://isajakeyy.itch.io/tiny-kingdom-defense">Get it on itch.io</a>
-		<p class="small">Free for Windows. Online play needs an internet connection.</p>
+<!-- ============================================================ hero -->
+<header class="hero">
+	<nav class="topnav" aria-label="Sections">
+		<a href="#game">The Game</a>
+		<a href="#daily">Daily Challenge</a>
+		<a href="#heroes">Heroes</a>
+		<a href="#screens">Screenshots</a>
+	</nav>
+	<div class="clouds" aria-hidden="true">
+		<img class="cloud c1" src="images/pack/cloud1.png" width="576" height="256" alt="">
+		<img class="cloud c2" src="images/pack/cloud3.png" width="576" height="256" alt="">
+		<img class="cloud c3" src="images/pack/cloud5.png" width="576" height="256" alt="">
 	</div>
-
-	<h2>Your tiny kingdom</h2>
-	<p>Your castle stands on a floating island, and invaders are coming from the sea. Gather wood, gold and meat,
-	raise houses and barracks, train an army and level up your hero. Then hold your castle against 12 waves of
-	invaders landing on your shores.</p>
-	<ul>
-		<li><strong>Build a kingdom.</strong> Pawns chop trees, mine gold and herd sheep on their own, then build your houses, barracks, archery ranges, monasteries and towers.</li>
-		<li><strong>Command an army</strong> of warriors, archers, lancers and monks.</li>
-		<li><strong>Pick a hero:</strong> Knight, Lancer, Ranger or Priest, each with two abilities.</li>
-		<li><strong>Five islands</strong> plus endless random ones, on Easy, Normal or Hard.</li>
-		<li><strong>Online Co-op and Versus</strong> for up to 4 players. Play as a guest or sign in with Epic.</li>
-	</ul>
-
-	<div class="shots">
-		<img src="images/battle.png" width="1920" height="1080" alt="A built-up base fighting off a wave">
-		<img src="images/island.png" width="1920" height="1080" alt="A whole island seen from above">
-		<img src="images/online.png" width="1920" height="1080" alt="The Play Online menu">
+	<div class="hero-inner">
+		<h1 class="logo">
+			<span class="logo-top title-text">Tiny Kingdom</span>
+			<span class="ribbon-blue logo-sub">Defense</span>
+		</h1>
+		<p class="ribbon-red tagline">Gather - Build - Defend<span class="opt">, alone or with friends</span></p>
+		<div class="cta-row">
+			<a class="btn" href="https://isajakeyy.itch.io/tiny-kingdom-defense">Download free</a>
+		</div>
+		<p class="hero-note light-text">Free for Windows &nbsp;-&nbsp; Online co-op &amp; versus &nbsp;-&nbsp; A new Daily Challenge every day</p>
 	</div>
+</header>
 
-	<footer>
-		<a href="privacy.html">Privacy Policy</a>
-		<a href="https://isajakeyy.itch.io/tiny-kingdom-defense">itch.io</a>
-		<p>Made by IsaJakeyy. Art: Tiny Swords by Pixel Frog.</p>
-	</footer>
+<main>
+<!-- ============================================================ trailer -->
+<section id="game" class="trailer">
+	<div class="wrap">
+		<div class="section-title">
+			<h2 class="title-text">Your tiny kingdom</h2>
+			<p class="light-text">Your castle stands on a floating island, and invaders are coming from the sea.
+			Gather, build, raise an army and hold the line for 12 waves.</p>
+		</div>
+		<div class="wood">
+			<img src="images/gameplay.gif" width="960" height="540" alt="Blue soldiers and red invaders clash next to a castle on a grassy island">
+		</div>
+	</div>
+</section>
+
+<!-- ============================================================ features -->
+<section>
+	<div class="wrap features">
+		<article class="paper feature">
+			<div class="art">
+				<img src="images/pack/gold_stone.png" width="128" height="128" alt="" style="margin-right:-100px">
+				<i class="sp flip" style="--img:url(images/pack/pawn_mine.png); --n:6; --w:192px; --h:192px; --t:0.7s; margin-bottom:-56px"></i>
+			</div>
+			<h3>Gather</h3>
+			<p>Pawns chop trees, mine gold and herd sheep all by themselves. You decide what they focus on.</p>
+		</article>
+		<article class="paper feature">
+			<div class="art"><img src="images/pack/castle_blue.png" width="240" height="192" alt="A blue castle"></div>
+			<h3>Build</h3>
+			<p>Houses, barracks, archery ranges, monasteries and towers. Upgrade them to make your army stronger.</p>
+		</article>
+		<article class="paper feature">
+			<div class="art">
+				<i class="sp" style="--img:url(images/pack/archer_shoot.png); --n:8; --w:192px; --h:192px; --t:1s; margin-bottom:-56px"></i>
+				<i class="sp" style="--img:url(images/pack/knight_idle.png); --n:8; --w:192px; --h:192px; --t:1s; margin:0 0 -56px -90px"></i>
+			</div>
+			<h3>Command</h3>
+			<p>Warriors, archers, lancers and monks with simple RTS controls. Archers shoot further from the high ground.</p>
+		</article>
+		<article class="paper feature">
+			<div class="art">
+				<i class="sp" style="--img:url(images/pack/knight_guard.png); --n:6; --w:192px; --h:192px; --t:0.8s; margin-bottom:-56px"></i>
+				<i class="sp flip" style="--img:url(images/pack/red_run.png); --n:6; --w:192px; --h:192px; --t:0.6s; margin:0 0 -56px -100px"></i>
+			</div>
+			<h3>Defend</h3>
+			<p>Invaders land on your shores, wave after wave. Call a wave early for bonus gold, if you dare.</p>
+		</article>
+		<article class="paper feature">
+			<div class="art">
+				<div class="isle" style="--bob:-1s">
+					<img class="ground" src="images/pack/island_small_autumn.png" width="256" height="232" alt="" style="width:192px;height:auto">
+					<i class="sp on" style="--img:url(images/pack/sheep.png); --n:12; --w:128px; --h:128px; --t:1.6s; --x:45%; --y:96px"></i>
+				</div>
+			</div>
+			<h3>Five islands</h3>
+			<p>From little Sunny Cove to The Great Realm, plus endless random ones, on Easy, Normal or Hard.</p>
+		</article>
+		<article class="paper feature">
+			<div class="art avatars">
+				<img src="images/pack/avatar_01.png" width="256" height="256" alt="Blue player">
+				<img src="images/pack/avatar_11.png" width="256" height="256" alt="Yellow player">
+				<img src="images/pack/avatar_16.png" width="256" height="256" alt="Purple player">
+				<img src="images/pack/avatar_21.png" width="256" height="256" alt="Black player">
+			</div>
+			<h3>Play together</h3>
+			<p>Online co-op and versus for up to 4 players. No IP addresses: share a 5-letter room code or use Quick Match.</p>
+		</article>
+	</div>
+</section>
+
+<!-- ============================================================ daily challenge -->
+<section id="daily">
+	<div class="wrap">
+		<div class="section-title">
+			<h2 class="title-text">Daily Challenge</h2>
+			<p class="light-text">A new quick game every day, the same for everyone. Post your score and climb today's leaderboard.</p>
+		</div>
+		<div class="daily">
+			<div class="slate today">
+				<h3>TODAY'S CHALLENGE</h3>
+				<div class="mode" id="today-mode">Hero Rush</div>
+				<p class="twist" id="today-twist"></p>
+				<p id="today-desc"></p>
+				<p id="today-island"></p>
+				<p>Next challenge in<br><span class="count" id="today-count">--:--:--</span></p>
+				<a class="btn small-btn" href="https://isajakeyy.itch.io/tiny-kingdom-defense">Play it</a>
+			</div>
+			<div class="slate">
+				<div class="modes">
+					<figure class="mode-card" data-mode="hero" style="margin:0">
+						<button type="button" data-full="images/shots/11_hero_rush.png" data-caption="Hero Rush: just your hero against an endless horde.">
+							<img class="shot" src="images/shots/11_hero_rush.png" width="1920" height="1080" alt="Hero Rush: a knight surrounded by red invaders">
+						</button>
+						<h4>Hero Rush</h4>
+						<p>Just your hero against an endless horde. Survive as long as you can!</p>
+						<span class="today-tag">TODAY</span>
+					</figure>
+					<figure class="mode-card" data-mode="siege" style="margin:0">
+						<button type="button" data-full="images/shots/09_siege.png" data-caption="Siege: lead an army and tear down the Red kingdom's castle.">
+							<img class="shot" src="images/shots/09_siege.png" width="1920" height="1080" alt="Siege: a blue army attacking a burning red castle">
+						</button>
+						<h4>Siege</h4>
+						<p>Lead an army and tear down the Red castle, as fast as you can.</p>
+						<span class="today-tag">TODAY</span>
+					</figure>
+					<figure class="mode-card" data-mode="gold" style="margin:0">
+						<button type="button" data-full="images/shots/12_gold_rush.png" data-caption="Gold Rush: mine the most gold in 5 minutes while raiders hunt your pawns.">
+							<img class="shot" src="images/shots/12_gold_rush.png" width="1920" height="1080" alt="Gold Rush: pawns mining while raiders land">
+						</button>
+						<h4>Gold Rush</h4>
+						<p>Mine the most gold in 5 minutes while raiders hunt your pawns.</p>
+						<span class="today-tag">TODAY</span>
+					</figure>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- ============================================================ heroes -->
+<section id="heroes">
+	<div class="wrap">
+		<div class="section-title">
+			<h2 class="title-text">Pick your hero</h2>
+			<p class="light-text">Your hero levels up as enemies fall, unlocks a second ability at level 3 and grows stronger at level 6.</p>
+		</div>
+		<div class="heroes">
+			<div class="hero-card">
+				<div class="isle" style="--bob:0s">
+					<img class="ground" src="images/pack/island_small_green.png" width="256" height="232" alt="">
+					<i class="sp on" style="--img:url(images/pack/knight_attack.png); --n:4; --w:192px; --h:192px; --t:0.6s; --x:50%; --y:150px"></i>
+				</div>
+				<div class="ribbon-red ribbon-small name">Knight</div>
+				<p class="light-text">Tough sword-and-shield champion. Holds the line.</p>
+				<p class="abil">Whirlwind &nbsp;/&nbsp; Shield Wall</p>
+			</div>
+			<div class="hero-card">
+				<div class="isle" style="--bob:-1.1s">
+					<img class="ground" src="images/pack/island_small_autumn.png" width="256" height="232" alt="">
+					<i class="sp on" style="--img:url(images/pack/lancer_attack.png); --n:3; --w:320px; --h:320px; --t:0.6s; --x:50%; --y:216px"></i>
+				</div>
+				<div class="ribbon-red ribbon-small name">Lancer</div>
+				<p class="light-text">Charges through enemy lines and spurs allies on.</p>
+				<p class="abil">Charge &nbsp;/&nbsp; Rally</p>
+			</div>
+			<div class="hero-card">
+				<div class="isle" style="--bob:-2.2s">
+					<img class="ground" src="images/pack/island_small_teal.png" width="256" height="232" alt="">
+					<i class="sp on" style="--img:url(images/pack/archer_shoot.png); --n:8; --w:192px; --h:192px; --t:1s; --x:50%; --y:150px"></i>
+				</div>
+				<div class="ribbon-red ribbon-small name">Ranger</div>
+				<p class="light-text">Deadly archer. Rains arrows from afar.</p>
+				<p class="abil">Arrow Volley &nbsp;/&nbsp; Eagle Eye</p>
+			</div>
+			<div class="hero-card">
+				<div class="isle" style="--bob:-3.3s">
+					<img class="ground" src="images/pack/island_small_sand.png" width="256" height="232" alt="">
+					<i class="sp on" style="--img:url(images/pack/monk_heal.png); --n:11; --w:192px; --h:192px; --t:1.4s; --x:50%; --y:152px"></i>
+				</div>
+				<div class="ribbon-red ribbon-small name">Priest</div>
+				<p class="light-text">Keeps your army standing with powerful heals.</p>
+				<p class="abil">Mass Heal &nbsp;/&nbsp; Blessing</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- ============================================================ screenshots -->
+<section id="screens">
+	<div class="wrap">
+		<div class="section-title">
+			<h2 class="title-text">Screenshots</h2>
+			<p class="light-text">Click one to see it full size.</p>
+		</div>
+		<div class="gallery">
+			<figure style="margin:0"><button type="button" data-full="images/shots/02_battle.png" data-caption="Hold your base against the invaders.">
+				<img src="images/shots/02_battle.png" width="1920" height="1080" alt="A built-up base fighting off a wave"></button>
+				<figcaption class="light-text">Hold your base</figcaption></figure>
+			<figure style="margin:0"><button type="button" data-full="images/shots/04_island_overview.png" data-caption="A whole island from above.">
+				<img src="images/shots/04_island_overview.png" width="1920" height="1080" alt="A whole island seen from above"></button>
+				<figcaption class="light-text">Hand-shaped islands</figcaption></figure>
+			<figure style="margin:0"><button type="button" data-full="images/shots/08_daily_challenge.png" data-caption="The Daily Challenge: today's mode, twist and leaderboard.">
+				<img src="images/shots/08_daily_challenge.png" width="1920" height="1080" alt="The Daily Challenge panel with today's mode and leaderboard"></button>
+				<figcaption class="light-text">A new challenge every day</figcaption></figure>
+			<figure style="margin:0"><button type="button" data-full="images/shots/05_island_picker.png" data-caption="Pick an island and a difficulty.">
+				<img src="images/shots/05_island_picker.png" width="1920" height="1080" alt="The island picker"></button>
+				<figcaption class="light-text">Pick your island</figcaption></figure>
+			<figure style="margin:0"><button type="button" data-full="images/shots/06_how_to_play.png" data-caption="An animated How to Play guide.">
+				<img src="images/shots/06_how_to_play.png" width="1920" height="1080" alt="The How to Play guide"></button>
+				<figcaption class="light-text">Learn as you go</figcaption></figure>
+			<figure style="margin:0"><button type="button" data-full="images/shots/07_play_online.png" data-caption="Play online: room codes, Quick Match and Epic friends.">
+				<img src="images/shots/07_play_online.png" width="1920" height="1080" alt="The Play Online menu"></button>
+				<figcaption class="light-text">Play with friends</figcaption></figure>
+		</div>
+	</div>
+</section>
+
+<!-- ============================================================ finale -->
+<section class="finale">
+	<div class="wrap">
+		<div class="isle" aria-hidden="true">
+			<img class="ground" src="images/pack/island_wide_green.png" width="512" height="296" alt="">
+			<img class="on" src="images/pack/tower_red.png" width="128" height="256" alt="" style="--x:420px; --y:150px">
+			<i class="sp on" style="--img:url(images/pack/sheep.png); --n:12; --w:128px; --h:128px; --t:1.6s; --x:70px; --y:120px"></i>
+			<i class="sp on" style="--img:url(images/pack/knight_attack.png); --n:4; --w:192px; --h:192px; --t:0.55s; --x:210px; --y:180px"></i>
+			<i class="sp on flip" style="--img:url(images/pack/red_attack.png); --n:4; --w:192px; --h:192px; --t:0.55s; --d:-0.27s; --x:285px; --y:180px"></i>
+		</div>
+		<div class="section-title" style="margin-top:20px">
+			<h2 class="title-text">Your kingdom awaits</h2>
+		</div>
+		<a class="btn" href="https://isajakeyy.itch.io/tiny-kingdom-defense">Download free on itch.io</a>
+		<p class="light-text">Windows 10 or 11 (64-bit). Online play needs an internet connection.</p>
+	</div>
+</section>
 </main>
+
+<footer>
+	<a href="privacy.html">Privacy Policy</a>
+	<a href="https://isajakeyy.itch.io/tiny-kingdom-defense">itch.io</a>
+	<p class="light-text">Made by IsaJakeyy. Art: Tiny Swords by Pixel Frog. Online: Epic Online Services.</p>
+	<p class="light-text small">Tiny Kingdom Defense is an independent game, not made by or affiliated with Pixel Frog or Epic Games.</p>
+</footer>
+
+<dialog class="lightbox" id="lightbox" aria-label="Screenshot">
+	<form method="dialog"><button type="submit" style="all:unset;cursor:zoom-out;display:block">
+		<img id="lightbox-img" src="" alt="">
+		<p id="lightbox-cap"></p>
+	</button></form>
+</dialog>
+
+<script>
+// ---- Today's Daily Challenge: the same maths as the game (scripts/game.gd), so it always matches.
+(function () {
+	var EPOCH = 1793491200;  // day 0 = 2026-11-01 UTC
+	var MODES = [
+		{id: "hero", name: "Hero Rush", desc: "Just your hero against an endless horde. Survive as long as you can!"},
+		{id: "siege", name: "Siege", desc: "Lead an army and tear down the Red kingdom's castle, as fast as you can."},
+		{id: "gold", name: "Gold Rush", desc: "Mine the most gold in 5 minutes while raiders hunt your pawns."}
+	];
+	var TWISTS = [  // same order as Game.DAILY_TWISTS
+		{name: "Swift Foes", desc: "Every enemy runs 30% faster.", modes: ["hero", "siege", "gold"]},
+		{name: "Iron Horde", desc: "Fewer enemies, but each one is much tougher.", modes: ["hero", "siege", "gold"]},
+		{name: "Arrow Storm", desc: "Almost every enemy is an archer.", modes: ["hero", "siege", "gold"]},
+		{name: "Lance Charge", desc: "Lots of lancers among the enemy.", modes: ["hero", "siege", "gold"]},
+		{name: "The Horde", desc: "Twice as many enemies, but they are weaker.", modes: ["hero", "siege", "gold"]},
+		{name: "Glass Castle", desc: "Your castle has half its health.", siege: "The Red castle has half its health. Be quick!", modes: ["siege", "gold"]},
+		{name: "Boom Times", desc: "Pawns work 30% faster, but the raids are bigger.", modes: ["gold"]},
+		{name: "No Rest", desc: "The enemy attacks twice as often.", siege: "Red reinforcements arrive twice as often.", modes: ["hero", "siege", "gold"]},
+		{name: "Veteran", desc: "Your hero starts at level 4.", modes: ["hero", "siege"]}
+	];
+	var ISLANDS = ["Sunny Cove", "Twin Hills", "Autumn Ridge"];
+	function godotHash(s) {  // Godot's String.hash() (djb2, 32-bit)
+		var h = 5381;
+		for (var i = 0; i < s.length; i++) h = (Math.imul(h, 33) + s.charCodeAt(i)) >>> 0;
+		return h;
+	}
+	function mod(a, n) { return ((a % n) + n) % n; }
+	function day() { return Math.floor((Date.now() / 1000 - EPOCH) / 86400); }
+	var shown = -1;
+	function update() {
+		var d = day();
+		if (d !== shown) {
+			shown = d;
+			var seed = Math.max(1, (godotHash("tkd-daily:" + d) & 0x7fffffff) >>> 0);
+			var mode = MODES[mod(d, MODES.length)];
+			var fits = TWISTS.filter(function (t) { return t.modes.indexOf(mode.id) >= 0; });
+			var tw = fits[mod(Math.floor(seed / 7), fits.length)];
+			document.getElementById("today-mode").textContent = mode.name;
+			document.getElementById("today-twist").textContent = "Twist - " + tw.name + ": " + (tw[mode.id] || tw.desc);
+			document.getElementById("today-desc").textContent = mode.desc;
+			document.getElementById("today-island").textContent = "Island: " + ISLANDS[mod(Math.floor(seed / 13), ISLANDS.length)];
+			document.querySelectorAll(".mode-card").forEach(function (c) {
+				c.classList.toggle("is-today", c.getAttribute("data-mode") === mode.id);
+			});
+		}
+		var left = 86400 - mod(Math.floor(Date.now() / 1000) - EPOCH, 86400);
+		var hh = Math.floor(left / 3600), mm = Math.floor(left % 3600 / 60), ss = left % 60;
+		document.getElementById("today-count").textContent =
+			hh + "h " + String(mm).padStart(2, "0") + "m " + String(ss).padStart(2, "0") + "s";
+	}
+	update();
+	setInterval(update, 1000);
+})();
+
+// ---- Click a screenshot to see it full size.
+(function () {
+	var box = document.getElementById("lightbox");
+	var img = document.getElementById("lightbox-img");
+	var cap = document.getElementById("lightbox-cap");
+	document.querySelectorAll("[data-full]").forEach(function (b) {
+		b.addEventListener("click", function () {
+			img.src = b.getAttribute("data-full");
+			img.alt = b.querySelector("img").alt;
+			cap.textContent = b.getAttribute("data-caption") || "";
+			if (box.showModal) box.showModal(); else window.open(img.src);
+		});
+	});
+	box.addEventListener("click", function (e) { if (e.target === box) box.close(); });
+})();
+</script>
 </body>
 </html>
