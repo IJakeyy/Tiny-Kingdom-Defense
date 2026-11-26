@@ -179,6 +179,28 @@ section { position: relative; padding: 70px 16px; }
 .avatars { display: flex; flex-wrap: wrap; gap: 4px; }
 .avatars img { width: 52px; height: 52px; }
 
+/* Playable mini-game ("Defend this page!", game.js) */
+.play { padding-top: 50px; }
+.play-stage { position: relative; cursor: url("images/game/cursor_hand.png") 22 8, pointer; }
+.play-stage canvas { display: block; width: 100%; touch-action: manipulation; -webkit-user-select: none; user-select: none; }
+.play-overlay { position: absolute; inset: 0; display: grid; place-items: center; padding: 8px; cursor: auto; }
+.play-overlay[hidden], .play-controls [hidden] { display: none; }
+.play-panel { max-width: 540px; text-align: center; animation: pop 0.25s ease-out; }
+.play-panel h3 { font-family: "Jacquard 24", Georgia, serif; font-size: 52px; line-height: 1; color: var(--red); }
+.play-panel p { margin: 10px 0 14px; font-size: 18px; }
+.play-panel .new-best { color: var(--red); font-weight: 700; }
+.play-btns { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+.play-btns .btn, .play-controls .btn { font-family: inherit; cursor: pointer; }
+.play-controls { text-align: center; min-height: 64px; margin-top: 4px; }
+.play-controls .btn:disabled { filter: grayscale(0.8) brightness(0.85); transform: none; cursor: default; }
+@keyframes pop { from { transform: scale(0.8); opacity: 0; } }
+@media (max-width: 640px) {
+	.play-overlay { position: relative; inset: auto; margin-top: -30px; padding: 0; }  /* panel goes under the island */
+	.play-panel h3 { font-size: 40px; }
+	.play-panel p { font-size: 16px; }
+}
+.cta-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 14px; }
+
 /* Daily Challenge */
 .daily { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: 26px; align-items: start; }
 .today h3 { color: var(--gold); font-size: 22px; letter-spacing: 1px; }
@@ -236,7 +258,7 @@ footer p { margin: 10px 0 0; }
 }
 @media (max-width: 640px) {
 	body { font-size: 17px; }
-	.topnav { gap: 12px; font-size: 14px; white-space: nowrap; }
+	.topnav { left: 8px; right: 8px; transform: none; flex-wrap: wrap; justify-content: center; gap: 2px 14px; font-size: 14px; }
 	.features, .together, .modes, .gallery { grid-template-columns: 1fr; }
 	.logo-top { font-size: clamp(40px, 13vw, 90px); }
 	/* Ribbons at exactly half size on phones. */
