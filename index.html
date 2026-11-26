@@ -299,20 +299,42 @@
 		return h;
 	}
 	function mod(a, n) { return ((a % n) + n) % n; }
+	var MIX_FROM = 26, SALT_TWIST = 0x9E3779B9, SALT_MAP = 0x85EBCA6B;  // Game.DAILY_MIX_FROM etc.
+	function seedOf(d) { return Math.max(1, (godotHash("tkd-daily:" + d) & 0x7fffffff) >>> 0); }
+	function mix32(x) {  // lowbias32, same as Game._mix32
+		x = x >>> 0;
+		x = (x ^ (x >>> 16)) >>> 0;
+		x = Math.imul(x, 0x7feb352d) >>> 0;
+		x = (x ^ (x >>> 15)) >>> 0;
+		x = Math.imul(x, 0x846ca68b) >>> 0;
+		x = (x ^ (x >>> 16)) >>> 0;
+		return x;
+	}
+	function chain(day, n, step, salt, legacyDiv) {  // same as Game._daily_chain
+		if (day < MIX_FROM || n <= 1) return mod(Math.floor(seedOf(day) / legacyDiv), n);
+		var start = day - step * Math.floor((day - MIX_FROM) / step);
+		var prev = mod(Math.floor(seedOf(start - step) / legacyDiv), n);
+		for (var d = start; d <= day; d += step) {
+			var r = mix32((seedOf(d) ^ salt) >>> 0) % (n - 1);
+			prev = r < prev ? r : r + 1;
+		}
+		return prev;
+	}
+	function twistIndex(d, n) { return chain(d, n, 3, SALT_TWIST, 7); }
+	function islandIndex(d) { return chain(d, 3, 1, SALT_MAP, 13); }
 	function day() { return Math.floor((Date.now() / 1000 - EPOCH) / 86400); }
 	var shown = -1;
 	function update() {
 		var d = day();
 		if (d !== shown) {
 			shown = d;
-			var seed = Math.max(1, (godotHash("tkd-daily:" + d) & 0x7fffffff) >>> 0);
 			var mode = MODES[mod(d, MODES.length)];
 			var fits = TWISTS.filter(function (t) { return t.modes.indexOf(mode.id) >= 0; });
-			var tw = fits[mod(Math.floor(seed / 7), fits.length)];
+			var tw = fits[twistIndex(d, fits.length)];
 			document.getElementById("today-mode").textContent = mode.name;
 			document.getElementById("today-twist").textContent = "Twist - " + tw.name + ": " + (tw[mode.id] || tw.desc);
 			document.getElementById("today-desc").textContent = mode.desc;
-			document.getElementById("today-island").textContent = "Island: " + ISLANDS[mod(Math.floor(seed / 13), ISLANDS.length)];
+			document.getElementById("today-island").textContent = "Island: " + ISLANDS[islandIndex(d)];
 			document.querySelectorAll(".mode-card").forEach(function (c) {
 				c.classList.toggle("is-today", c.getAttribute("data-mode") === mode.id);
 			});
